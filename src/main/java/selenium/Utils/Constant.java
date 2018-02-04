@@ -19,7 +19,7 @@ public class Constant {
 	public static final int TO_ROW_COL_NUM = 5;
 	//Other testcase sheet
 	public static final int TOTAL_COLUMN_NUMBER = 13;
-	
+	public static final int Testcase_Step_COL_NUM = 1;
 	
 	public static final String narrow="===============================================";
 	public static final String yes="yes";

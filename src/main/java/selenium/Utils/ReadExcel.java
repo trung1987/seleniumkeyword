@@ -18,6 +18,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 
+import selenium.Keywords.BrowserKeyWords;
+
 
 /**
  * @author TrungTH_CA
@@ -54,7 +56,7 @@ public class ReadExcel {
 						Constant.TO_ROW_COL_NUM);
 				
 				if(runColumn.get(j).toLowerCase().equalsIgnoreCase(Constant.yes)){
-					driver = readExcelFile(null, j, filePathConfig, fileNameConfig, sheet,
+					driver = readExcelFile(null, i, filePathConfig, fileNameConfig, sheet,
 							Integer.parseInt(fromRow), Integer.parseInt(toRow), true,
 							Constant.TOTAL_COLUMN_NUMBER);
 				}
@@ -142,16 +144,15 @@ public class ReadExcel {
 			String readSheetName, int fromRow, int toRow, boolean haveRelated, int maxColumn) throws Exception {
 		// Clear previous result on test case file
 		// still not code this
-		System.out.println(Constant.narrow);
 		for (int i = fromRow; i < toRow ; i++) {
 			try {
 				ArrayList<String> eachRow = ReadExcel.readExcelFileAtRow(filePath, fileName, readSheetName, i, 0,
 						maxColumn);
-				/*	execute keyword*/
-				System.out.println(i+" "+eachRow);
+				execute_keyword(driver,eachRow,browserColumn);
+				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-			/*	write result if fail*/
+			/*	write result if fail to excel*/
 				System.out.println("error gi do");
 			}
 		}
@@ -160,28 +161,45 @@ public class ReadExcel {
 	
 	
 	// read data at specific row from 'startColumn' to 'endColumn'
-		@SuppressWarnings({ "deprecation", "static-access" })
-		public static ArrayList<String> readExcelFileAtRow(String filePath, String fileName, String sheetName, int row,
-				int startColumn, int endColumn) throws IOException {
-			ArrayList<String> rowData = new ArrayList<String>();
-			try {
-				Workbook wb = newWorkbook(filePath, fileName);
-				Sheet sheet = wb.getSheet(sheetName);
-				Row rowExcel = null;
-				rowExcel = sheet.getRow(row);
-				for (int i = startColumn; i <= endColumn; i++) {
-					try {
-						Cell cell = rowExcel.getCell(i);
-						cell.setCellType(cell.CELL_TYPE_STRING);
-						rowData.add(cell.getStringCellValue());
-					} catch (Exception e) {
-						// if row(i) = null / empty
-						rowData.add("");
-					}
+	@SuppressWarnings({ "deprecation", "static-access" })
+	public static ArrayList<String> readExcelFileAtRow(String filePath, String fileName, String sheetName, int row,
+			int startColumn, int endColumn) throws IOException {
+		ArrayList<String> rowData = new ArrayList<String>();
+		try {
+			Workbook wb = newWorkbook(filePath, fileName);
+			Sheet sheet = wb.getSheet(sheetName);
+			Row rowExcel = null;
+			rowExcel = sheet.getRow(row);
+			for (int i = startColumn; i <= endColumn; i++) {
+				try {
+					Cell cell = rowExcel.getCell(i);
+					cell.setCellType(cell.CELL_TYPE_STRING);
+					rowData.add(cell.getStringCellValue());
+				} catch (Exception e) {
+					// if row(i) = null / empty
+					rowData.add("");
 				}
-			} catch (Exception e) {
-				System.out.println("Cannot read data at row:" + row);
 			}
-			return rowData;
+		} catch (Exception e) {
+			System.out.println("Cannot read data at row:" + row);
 		}
+		return rowData;
+	}
+		
+	public static void execute_keyword(WebDriver driver,ArrayList<String> eachRow,int browser) {
+		//just get column steps
+		switch (eachRow.get(Constant.Testcase_Step_COL_NUM)) {
+		case "Open Browser":
+			BrowserKeyWords.OpenBrowser(driver,browser);
+			break;
+		case "AssertPageTitle(Expected output)":
+			
+			break;
+
+		default:
+			break;
+		}
+
+	}
+	
 }
