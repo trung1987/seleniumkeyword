@@ -2,46 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="55430" started-at="2018-02-04T10:14:49Z" finished-at="2018-02-04T10:15:45Z">
+  <suite name="Default suite" duration-ms="45749" started-at="2018-02-04T12:03:13Z" finished-at="2018-02-04T12:03:59Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="55430" started-at="2018-02-04T10:14:49Z" finished-at="2018-02-04T10:15:45Z">
+    <test name="Default test" duration-ms="45749" started-at="2018-02-04T12:03:13Z" finished-at="2018-02-04T12:03:59Z">
       <class name="selenium.seleniumKeyword.TestRunner">
-        <test-method status="PASS" signature="TestApp()[pri:0, instance:selenium.seleniumKeyword.TestRunner@3f4d3d]" name="TestApp" duration-ms="55233" started-at="2018-02-04T17:14:49Z" finished-at="2018-02-04T17:15:45Z">
+        <test-method status="PASS" signature="TestApp()[pri:0, instance:selenium.seleniumKeyword.TestRunner@42a311]" name="TestApp" duration-ms="45676" started-at="2018-02-04T19:03:13Z" finished-at="2018-02-04T19:03:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestApp -->
-        <test-method status="FAIL" signature="TearDown()[pri:0, instance:selenium.seleniumKeyword.TestRunner@3f4d3d]" name="TearDown" is-config="true" duration-ms="1" started-at="2018-02-04T17:15:45Z" finished-at="2018-02-04T17:15:45Z">
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at selenium.seleniumKeyword.TestRunner.TearDown(TestRunner.java:21)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:523)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:224)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:146)
-	at org.testng.TestRunner.afterRun(TestRunner.java:1007)
-	at org.testng.TestRunner.run(TestRunner.java:638)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:425)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:420)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:385)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:334)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1318)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1243)
-	at org.testng.TestNG.runSuites(TestNG.java:1161)
-	at org.testng.TestNG.run(TestNG.java:1129)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        <test-method status="PASS" signature="TearDown()[pri:0, instance:selenium.seleniumKeyword.TestRunner@42a311]" name="TearDown" is-config="true" duration-ms="0" started-at="2018-02-04T19:03:59Z" finished-at="2018-02-04T19:03:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TearDown -->

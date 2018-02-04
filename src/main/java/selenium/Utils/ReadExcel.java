@@ -27,7 +27,7 @@ import selenium.Keywords.BrowserKeyWords;
  */
 public class ReadExcel {
 
-	static WebDriver driver;
+	static WebDriver mainDriver,localDriver;
 	static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 	static LocalDateTime now = LocalDateTime.now();
 	
@@ -56,13 +56,13 @@ public class ReadExcel {
 						Constant.TO_ROW_COL_NUM);
 				
 				if(runColumn.get(j).toLowerCase().equalsIgnoreCase(Constant.yes)){
-					driver = readExcelFile(null, i, filePathConfig, fileNameConfig, sheet,
+					localDriver = readExcelFile(null, i, filePathConfig, fileNameConfig, sheet,
 							Integer.parseInt(fromRow), Integer.parseInt(toRow), true,
 							Constant.TOTAL_COLUMN_NUMBER);
 				}
 			}
 		}
-		return driver;
+		return localDriver;
 	}
 	
 	
@@ -148,7 +148,7 @@ public class ReadExcel {
 			try {
 				ArrayList<String> eachRow = ReadExcel.readExcelFileAtRow(filePath, fileName, readSheetName, i, 0,
 						maxColumn);
-				execute_keyword(driver,eachRow,browserColumn);
+				execute_keyword(localDriver,eachRow,browserColumn);
 				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -156,7 +156,7 @@ public class ReadExcel {
 				System.out.println("error gi do");
 			}
 		}
-		return driver;
+		return localDriver;
 	}
 	
 	
@@ -186,11 +186,19 @@ public class ReadExcel {
 		return rowData;
 	}
 		
-	public static void execute_keyword(WebDriver driver,ArrayList<String> eachRow,int browser) {
+	public static void execute_keyword(WebDriver localdriver,ArrayList<String> eachRow,int browser) {
 		//just get column steps
+		if (localDriver != null) {
+			mainDriver = localDriver;
+		}
 		switch (eachRow.get(Constant.Testcase_Step_COL_NUM)) {
 		case "Open Browser":
-			BrowserKeyWords.OpenBrowser(driver,browser);
+			mainDriver = BrowserKeyWords.OpenBrowser(browser);
+			break;
+		case "Go to URL(Test Input 1)":
+		
+			String url=eachRow.get(Constant.Testcase_Input1_COL_NUM);
+			BrowserKeyWords.GotoURL(mainDriver, url);
 			break;
 		case "AssertPageTitle(Expected output)":
 			

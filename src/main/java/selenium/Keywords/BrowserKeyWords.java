@@ -21,21 +21,20 @@ import selenium.Utils.Constant;
  */
 public class BrowserKeyWords {
 
-	public static WebDriver driver;
-	public static WebDriver OpenBrowser(WebDriver driver,int browser) {
+	public static WebDriver OpenBrowser(int browser) {
+		WebDriver driver=null;
 		switch (browser) {
 		case Constant.RUN_Chrome_COL_NUM:
 			System.out.println(Constant.narrow+"\nopen Chrome");
-			driver=openChrome();
+			driver=openChrome(driver);
 			break;
 		case Constant.RUN_FF_COL_NUM:
-			driver=openFF();
+			driver=openFF(driver);
 			System.out.println(Constant.narrow+"\nopen FF");		
 			break;
-					
 		case Constant.RUN_IE_COL_NUM:
 			System.out.println(Constant.narrow+"\nopen IE");
-			driver=openIE();
+			driver=openIE(driver);
 			break;	
 		default:
 			break;
@@ -43,25 +42,27 @@ public class BrowserKeyWords {
 		return driver;
 	}
 	
-	public static WebDriver openFF() {
+	public static WebDriver openFF(WebDriver driver) {
 		FirefoxDriverManager.getInstance().setup();
 		driver = new FirefoxDriver();
 		return driver;
 		
 	}
 	
-	public static WebDriver openIE() {
+	public static WebDriver openIE(WebDriver driver) {
 		InternetExplorerDriverManager.getInstance().setup();
 		driver = new InternetExplorerDriver();
 		return driver;
 		
 	}
-	public static WebDriver openChrome() {
+	public static WebDriver openChrome(WebDriver driver) {
 		ChromeDriverManager.getInstance().setup();
-		// SSL Certificate Error Handling in Chrome
-		DesiredCapabilities handlSSLErr = DesiredCapabilities.chrome();
-		handlSSLErr.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		driver = new ChromeDriver(handlSSLErr);
+		driver=new ChromeDriver();
 		return driver;
+	}
+	
+	public static void GotoURL(WebDriver driver, String url) {
+		System.out.println(Constant.narrow+"\n=----"+url);
+		driver.get(url);
 	}
 }

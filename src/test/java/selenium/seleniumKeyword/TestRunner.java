@@ -18,6 +18,6 @@ public class TestRunner {
 	
 	@AfterTest
 	public void TearDown(){
-		driver.quit();
+		//driver.quit();
 	}
 }
