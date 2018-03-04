@@ -65,4 +65,8 @@ public class BrowserKeyWords {
 		System.out.println(Constant.narrow+"\n=----"+url);
 		driver.get(url);
 	}
+	
+	public static void Quit(WebDriver driver) {
+		driver.quit();
+	}
 }

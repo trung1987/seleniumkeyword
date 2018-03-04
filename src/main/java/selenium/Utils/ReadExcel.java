@@ -17,8 +17,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
-
+import selenium.Keywords.AssertKeyWords;
 import selenium.Keywords.BrowserKeyWords;
+import selenium.Keywords.ClickKeyWords;
 
 
 /**
@@ -59,7 +60,7 @@ public class ReadExcel {
 					localDriver = readExcelFile(null, i, filePathConfig, fileNameConfig, sheet,
 							Integer.parseInt(fromRow), Integer.parseInt(toRow), true,
 							Constant.TOTAL_COLUMN_NUMBER);
-				}
+				} else j++;
 			}
 		}
 		return localDriver;
@@ -153,7 +154,7 @@ public class ReadExcel {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			/*	write result if fail to excel*/
-				System.out.println("error gi do");
+				System.out.println("error : " +e.getMessage());
 			}
 		}
 		return localDriver;
@@ -196,14 +197,24 @@ public class ReadExcel {
 			mainDriver = BrowserKeyWords.OpenBrowser(browser);
 			break;
 		case "Go to URL(Test Input 1)":
-		
 			String url=eachRow.get(Constant.Testcase_Input1_COL_NUM);
 			BrowserKeyWords.GotoURL(mainDriver, url);
 			break;
-		case "AssertPageTitle(Expected output)":
-			
+
+		case "Assert PageTitle(Expected output)":
+			String expect = eachRow.get(Constant.Testcase_Expect_COL_NUM);
+			AssertKeyWords.AssertPagetitle(mainDriver,expect);
 			break;
 
+		case "Click on Button(Find Element By, By Value)":
+			String FindBy=eachRow.get(Constant.Testcase_FindBy_COL_NUM);
+			String ByValue=eachRow.get(Constant.Testcase_ByValue_COL_NUM);
+			ClickKeyWords.ClickonButton(mainDriver, FindBy, ByValue);
+			break;
+			
+		case "Quit":
+			BrowserKeyWords.Quit(mainDriver);
+			break;
 		default:
 			break;
 		}

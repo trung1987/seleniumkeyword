@@ -20,6 +20,8 @@ public class Constant {
 	//Other testcase sheet
 	public static final int TOTAL_COLUMN_NUMBER = 13;
 	public static final int Testcase_Step_COL_NUM = 1;
+	public static final int Testcase_FindBy_COL_NUM = 2;
+	public static final int Testcase_ByValue_COL_NUM = 3;
 	public static final int Testcase_Input1_COL_NUM = 4;
 	public static final int Testcase_Input2_COL_NUM = 5;
 	public static final int Testcase_Input3_COL_NUM = 6;
